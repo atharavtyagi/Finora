@@ -66,10 +66,3 @@ Finora leverages a custom design system focused on:
 - **Vibrant Gradients**: Indigo and Violet accents for primary actions.
 - **Typography**: Utilizing the 'Outfit' and 'Inter' font families for a professional fintech feel.
 
-## 📄 License
-
-Distributed under the MIT License. See `LICENSE` for more information.
-
----
-
-Built with ❤️ by [Your Name]
