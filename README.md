@@ -1,5 +1,7 @@
 # Finora 🚀
 
+Live Link: https://finoraa.vercel.app/
+
 Finora is a premium, high-performance personal finance tracker designed with a modern fintech aesthetic. Built for clarity and speed, it provides users with deep insights into their financial habits through beautiful visualizations and a seamless user experience.
 
 ![Finora Header](public/logoblack.png)
