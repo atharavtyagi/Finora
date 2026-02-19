@@ -116,6 +116,12 @@
     gap: 3rem;
 }
 
+@media (max-width: 768px) {
+    .dashboard-grid {
+        gap: 1.5rem;
+    }
+}
+
 .summary-section {
     display: grid;
     grid-template-columns: repeat(3, 1fr);
@@ -206,14 +212,42 @@
 
 @media (max-width: 768px) {
     .dashboard-header {
-        flex-direction: column;
-        align-items: flex-start;
-        gap: 1.5rem;
+        flex-direction: row;
+        /* Keep row for hamburger + title */
+        align-items: center;
+        justify-content: space-between;
+        gap: 1rem;
+        padding-bottom: 1rem;
+        margin-bottom: 2rem;
+        flex-wrap: wrap;
+    }
+
+    .header-left {
+        display: flex;
+        align-items: center;
+        gap: 0.5rem;
+        flex: 1;
+        min-width: 0;
+        /* Allow shrinking */
     }
 
     .header-right {
-        width: 100%;
-        justify-content: space-between;
+        width: auto;
+        /* Don't force full width */
+        gap: 0.5rem;
+    }
+
+    .greeting h1 {
+        font-size: 1.5rem;
+        margin: 0;
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
+    }
+
+    .greeting p {
+        display: none;
+        /* Hide subtitle on very small screens to save space */
     }
 
     .summary-section {
@@ -224,11 +258,59 @@
         display: none;
     }
 
+    .greeting {
+        display: block;
+        /* Restore text */
+        overflow: hidden;
+        min-width: 0;
+    }
+
     .greeting h1 {
-        font-size: 1.75rem;
+        font-size: 1.2rem;
+        /* Smaller font for mobile */
+        margin: 0;
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
+    }
+
+    .header-left {
+        flex: 1;
+        /* Allow to take space */
+        min-width: 0;
+        /* Allow shrinking */
+        max-width: 60%;
+        /* Prevent it from pushing icons off */
+    }
+
+    .dashboard-header {
+        justify-content: space-between;
+        /* Space out hamburger and icons */
+        flex-wrap: nowrap;
+        /* Keep on one line if possible */
+        gap: 0.5rem;
     }
 
     .card {
         padding: 1rem;
+    }
+
+    /* Remove outer card styling on mobile for sections that contain inner cards */
+    .section-header {
+        margin-bottom: 1rem;
+        padding: 0 0.5rem;
+    }
+
+    .chart-container.card.glass,
+    .transactions-container.card.glass {
+        background: transparent;
+        border: none;
+        box-shadow: none;
+        padding: 0;
+    }
+
+    .chart-container .section-header h3,
+    .transactions-container .section-header h3 {
+        padding-left: 0.5rem;
     }
 }

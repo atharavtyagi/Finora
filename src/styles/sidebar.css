@@ -112,7 +112,8 @@
     inset: 0;
     background: rgba(0, 0, 0, 0.4);
     backdrop-filter: blur(4px);
-    z-index: 999;
+    z-index: 1999;
+    /* Below sidebar, above content */
 }
 
 @media (max-width: 1024px) {
@@ -121,6 +122,13 @@
         background: var(--bg-color);
         /* Ensure solid background on mobile */
         border-right: 1px solid var(--border-color);
+        position: fixed;
+        top: 0;
+        left: 0;
+        height: 100dvh;
+        z-index: 2000;
+        /* Highest priority */
+        box-shadow: var(--shadow-xl);
     }
 
     .sidebar.open {

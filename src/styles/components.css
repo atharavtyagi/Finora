@@ -308,6 +308,8 @@
     margin-bottom: 0.25rem;
     overflow: hidden;
     flex-wrap: wrap;
+    width: 100%;
+    /* Force match parent */
 }
 
 .transaction-item:hover {

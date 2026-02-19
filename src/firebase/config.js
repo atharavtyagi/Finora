@@ -3,12 +3,12 @@ import { getAuth } from "firebase/auth";
 import { getFirestore } from "firebase/firestore";
 
 const firebaseConfig = {
-  apiKey: "AIzaSyA6nn14MSPZmt0OncIweaSkXcMaLG0HQy4",
-  authDomain: "finora-60cec.firebaseapp.com",
-  projectId: "finora-60cec",
-  storageBucket: "finora-60cec.firebasestorage.app",
-  messagingSenderId: "24935876978",
-  appId: "1:24935876978:web:cccb1eeaceee269b7575eb"
+  apiKey: import.meta.env.VITE_FIREBASE_API_KEY,
+  authDomain: import.meta.env.VITE_FIREBASE_AUTH_DOMAIN,
+  projectId: import.meta.env.VITE_FIREBASE_PROJECT_ID,
+  storageBucket: import.meta.env.VITE_FIREBASE_STORAGE_BUCKET,
+  messagingSenderId: import.meta.env.VITE_FIREBASE_MESSAGING_SENDER_ID,
+  appId: import.meta.env.VITE_FIREBASE_APP_ID
 };
 
 const app = initializeApp(firebaseConfig);
