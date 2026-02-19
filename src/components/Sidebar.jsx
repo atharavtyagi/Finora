@@ -21,14 +21,13 @@ const Sidebar = ({ isOpen, onClose }) => {
     const handleLogout = async () => {
         try {
             await logout();
-        } catch (error) {
-            console.error("Failed to log out", error);
+        } catch (err) {
+            console.error(err);
         }
     };
 
     return (
         <>
-            {/* Overlay for mobile */}
             <div className={`sidebar-overlay ${isOpen ? 'show' : ''}`} onClick={onClose} />
 
             <aside className={`sidebar glass ${isOpen ? 'open' : ''}`}>
@@ -49,19 +48,19 @@ const Sidebar = ({ isOpen, onClose }) => {
                 </div>
 
                 <nav className="sidebar-nav">
-                    <NavLink to="/" className={({ isActive }) => `nav-link ${isActive ? 'active' : ''}`} end onClick={onClose}>
+                    <NavLink to="/" className="nav-link" end onClick={onClose}>
                         <LayoutDashboard size={20} />
                         <span>Dashboard</span>
                     </NavLink>
-                    <NavLink to="/transactions" className={({ isActive }) => `nav-link ${isActive ? 'active' : ''}`} onClick={onClose}>
+                    <NavLink to="/transactions" className="nav-link" onClick={onClose}>
                         <ArrowLeftRight size={20} />
                         <span>Transactions</span>
                     </NavLink>
-                    <NavLink to="/analytics" className={({ isActive }) => `nav-link ${isActive ? 'active' : ''}`} onClick={onClose}>
+                    <NavLink to="/analytics" className="nav-link" onClick={onClose}>
                         <PieChart size={20} />
                         <span>Analytics</span>
                     </NavLink>
-                    <NavLink to="/settings" className={({ isActive }) => `nav-link ${isActive ? 'active' : ''}`} onClick={onClose}>
+                    <NavLink to="/settings" className="nav-link" onClick={onClose}>
                         <Settings size={20} />
                         <span>Settings</span>
                     </NavLink>

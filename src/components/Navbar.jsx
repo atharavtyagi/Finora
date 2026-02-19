@@ -9,14 +9,14 @@ const Navbar = () => {
     const { currentUser, logout } = useAuth();
     const { darkMode, toggleDarkMode } = useSettings();
     const navigate = useNavigate();
-    const [isProfileModalOpen, setIsProfileModalOpen] = useState(false);
+    const [showProfile, setShowProfile] = useState(false);
 
     const handleLogout = async () => {
         try {
             await logout();
             navigate('/login');
-        } catch (error) {
-            console.error("Failed to log out", error);
+        } catch (err) {
+            console.error(err);
         }
     };
 
@@ -44,7 +44,7 @@ const Navbar = () => {
                             <>
                                 <div
                                     className="user-profile clickable"
-                                    onClick={() => setIsProfileModalOpen(true)}
+                                    onClick={() => setShowProfile(true)}
                                     title="Edit Profile"
                                 >
                                     <div className="avatar-small">
@@ -64,8 +64,8 @@ const Navbar = () => {
             </nav>
 
             <ProfileModal
-                isOpen={isProfileModalOpen}
-                onClose={() => setIsProfileModalOpen(false)}
+                isOpen={showProfile}
+                onClose={() => setShowProfile(false)}
             />
         </>
     );

@@ -80,7 +80,6 @@ const TransactionList = ({ transactions, onDelete, onEdit, hideControls = false 
                                     <p className="item-desc font-bold text-primary">{t.description}</p>
                                     <div className="item-meta">
                                         <span className="meta-tag glass">{t.category}</span>
-                                        <span className="dot"></span>
                                         <span className="meta-date text-secondary">{t.date}</span>
                                     </div>
                                 </div>

@@ -9,6 +9,7 @@ import Login from './pages/Login';
 import Signup from './pages/Signup';
 
 import Sidebar from './components/Sidebar';
+import Footer from './components/Footer';
 import { useSettings } from './context/SettingsContext';
 
 const PrivateRoute = ({ children }) => {
@@ -22,7 +23,10 @@ const DashboardLayout = ({ children }) => {
   return (
     <div className="app-wrapper">
       <Sidebar isOpen={isSidebarOpen} onClose={() => setSidebarOpen(false)} />
-      {children}
+      <div className="main-content-wrapper">
+        {children}
+        <Footer />
+      </div>
     </div>
   );
 };
@@ -32,8 +36,8 @@ function App() {
     <Router>
       <div className="app-container">
         <Routes>
-          <Route path="/login" element={<Login />} />
-          <Route path="/signup" element={<Signup />} />
+          <Route path="/login" element={<><Login /><Footer /></>} />
+          <Route path="/signup" element={<><Signup /><Footer /></>} />
           <Route path="/" element={<PrivateRoute><DashboardLayout><Dashboard /></DashboardLayout></PrivateRoute>} />
           <Route path="/transactions" element={<PrivateRoute><DashboardLayout><Transactions /></DashboardLayout></PrivateRoute>} />
           <Route path="/analytics" element={<PrivateRoute><DashboardLayout><Analytics /></DashboardLayout></PrivateRoute>} />

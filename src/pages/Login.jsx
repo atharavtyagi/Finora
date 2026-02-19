@@ -32,7 +32,7 @@ const Login = () => {
     };
 
     return (
-        <div className="flex items-center justify-center min-vh-100" style={{ minHeight: '100vh', background: 'var(--bg-color)' }}>
+        <div className="flex items-center justify-center" style={{ flex: 1, background: 'var(--bg-color)', padding: '2rem 0' }}>
             <div className="card glass luxury-card" style={{ maxWidth: '400px', width: '100%', padding: '2.5rem' }}>
                 <div className="text-center mb-6">
                     <div className="flex justify-center mb-4">

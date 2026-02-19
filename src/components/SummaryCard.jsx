@@ -37,9 +37,9 @@ const SummaryCard = ({ title, amount, type }) => {
             }}>
                 {icon}
             </div>
-            <div className="luxury-content">
-                <p className="luxury-label">{title}</p>
-                <h2 className="luxury-amount">{formattedAmount}</h2>
+            <div className="luxury-content" style={{ minWidth: 0 }}>
+                <p className="luxury-label" style={{ whiteSpace: 'nowrap', overflow: 'hidden', textOverflow: 'ellipsis' }}>{title}</p>
+                <h2 className="luxury-amount" style={{ fontSize: 'clamp(1.25rem, 4vw, 1.85rem)', overflow: 'hidden', textOverflow: 'ellipsis' }}>{formattedAmount}</h2>
             </div>
         </div>
     );

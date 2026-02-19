@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { useTransactions } from '../context/TransactionContext';
 import Charts from '../components/Charts';
-import { User, PieChart, TrendingUp, TrendingDown, Target, Sun, Moon, Bell } from 'lucide-react';
+import { User, PieChart, TrendingUp, TrendingDown, Target, Sun, Moon, Bell, Menu } from 'lucide-react';
 import '../styles/dashboard.css';
 import { useAuth } from '../context/AuthContext';
 import { useSettings } from '../context/SettingsContext';
@@ -30,6 +30,9 @@ const AnalyticsPage = () => {
         <main className="main-content">
             <header className="dashboard-header">
                 <div className="header-left">
+                    <button className="icon-btn glass hidden-desktop mr-4" onClick={toggleSidebar}>
+                        <Menu size={24} />
+                    </button>
                     <div className="greeting">
                         <h1>Financial <span className="text-gradient">Analytics</span></h1>
                         <p className="text-secondary">Deep dive into your spending habits.</p>

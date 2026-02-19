@@ -4,7 +4,7 @@ import SummaryCard from '../components/SummaryCard';
 import TransactionList from '../components/TransactionList';
 import TransactionForm from '../components/TransactionForm';
 import Charts from '../components/Charts';
-import { Plus, User, Bell, Search, Sun, Moon } from 'lucide-react';
+import { Plus, User, Bell, Search, Sun, Moon, Menu } from 'lucide-react';
 import '../styles/dashboard.css';
 import { useAuth } from '../context/AuthContext';
 import { useSettings } from '../context/SettingsContext';
@@ -69,6 +69,9 @@ const Dashboard = () => {
             {/* Executive Header */}
             <header className="dashboard-header slide-up">
                 <div className="header-left">
+                    <button className="icon-btn glass hidden-desktop mr-4" onClick={toggleSidebar}>
+                        <Menu size={24} />
+                    </button>
                     <div className="greeting">
                         <h1>Welcome back, <span className="text-gradient">{currentUser?.displayName?.split(' ')[0] || 'User'}</span></h1>
                         <p className="text-secondary">Your finances are looking healthy today.</p>

@@ -1,18 +1,9 @@
 import { createContext, useContext, useEffect, useState } from 'react';
-import {
-    collection,
-    addDoc,
-    deleteDoc,
-    doc,
-    updateDoc,
-    onSnapshot,
-    query,
-    where,
-    orderBy
-} from 'firebase/firestore';
+import { collection, addDoc, deleteDoc, doc, updateDoc, onSnapshot, query, where, orderBy } from 'firebase/firestore';
 import { useNotifications } from './NotificationContext';
 import { db } from '../firebase/config';
 import { useAuth } from './AuthContext';
+import { formatCurrency } from '../utils/formatters';
 
 const TransactionContext = createContext();
 
@@ -36,70 +27,58 @@ export const TransactionProvider = ({ children }) => {
             where('uid', '==', currentUser.uid)
         );
 
-        const unsubscribe = onSnapshot(q, (snapshot) => {
+        return onSnapshot(q, (snapshot) => {
             const docs = snapshot.docs.map(doc => ({
                 id: doc.id,
                 ...doc.data()
             }));
 
-            // Sort in memory to avoid needing a composite index
-            const sortedDocs = docs.sort((a, b) => new Date(b.date) - new Date(a.date));
-
-            setTransactions(sortedDocs);
+            // simple date sort
+            setTransactions(docs.sort((a, b) => new Date(b.date) - new Date(a.date)));
             setLoading(false);
-        }, (error) => {
-            console.error("Error fetching transactions: ", error);
-            setTransactions([]);
+        }, (err) => {
+            console.error("Fetch error:", err);
             setLoading(false);
         });
-
-        return unsubscribe;
     }, [currentUser]);
 
-    const addTransaction = async (transaction) => {
+    const addTransaction = async (data) => {
         if (!currentUser) return;
         try {
             await addDoc(collection(db, 'transactions'), {
-                ...transaction,
+                ...data,
                 uid: currentUser.uid,
                 createdAt: new Date()
             });
+
             addNotification(
-                "Transaction Recorded",
-                `Successfully saved ₹${parseFloat(transaction.amount).toLocaleString('en-IN')} for ${transaction.description}`,
+                "Saved!",
+                `Added ${formatCurrency(data.amount)} for ${data.description}`,
                 'success'
             );
-        } catch (error) {
-            console.error("Error adding transaction: ", error);
-            throw error;
+        } catch (err) {
+            console.error(err);
+            throw err;
         }
     };
 
     const deleteTransaction = async (id) => {
         try {
             await deleteDoc(doc(db, 'transactions', id));
-            addNotification(
-                "Transaction Removed",
-                "Successfully deleted the transaction record.",
-                'warning'
-            );
-        } catch (error) {
-            console.error("Error deleting transaction: ", error);
-            throw error;
+            addNotification("Removed", "Transaction deleted.", 'warning');
+        } catch (err) {
+            console.error(err);
+            throw err;
         }
     };
 
-    const updateTransaction = async (id, updatedTransaction) => {
+    const updateTransaction = async (id, data) => {
         try {
-            await updateDoc(doc(db, 'transactions', id), updatedTransaction);
-            addNotification(
-                "Transaction Updated",
-                `Successfully updated details for ${updatedTransaction.description}`,
-                'info'
-            );
-        } catch (error) {
-            console.error("Error updating transaction: ", error);
-            throw error;
+            await updateDoc(doc(db, 'transactions', id), data);
+            addNotification("Updated", `Saved changes for ${data.description}`, 'info');
+        } catch (err) {
+            console.error(err);
+            throw err;
         }
     };
 

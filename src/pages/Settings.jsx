@@ -11,7 +11,8 @@ import {
     ChevronRight,
     ChevronLeft,
     Mail,
-    Smartphone
+    Smartphone,
+    Menu
 } from 'lucide-react';
 import '../styles/dashboard.css';
 import '../styles/settings.css';
@@ -40,6 +41,9 @@ const SettingsPage = () => {
         <main className="main-content">
             <header className="dashboard-header slide-up">
                 <div className="header-left">
+                    <button className="icon-btn glass hidden-desktop mr-4" onClick={toggleSidebar}>
+                        <Menu size={24} />
+                    </button>
                     <div className="greeting">
                         <h1>App <span className="text-gradient">Settings</span></h1>
                     </div>

@@ -20,7 +20,8 @@ import {
     Calendar,
     Tag,
     Sun,
-    Moon
+    Moon,
+    Menu
 } from 'lucide-react';
 import '../styles/dashboard.css';
 import '../styles/transactions.css';
@@ -101,6 +102,9 @@ const TransactionsPage = () => {
             {/* Header */}
             <header className="dashboard-header slide-up">
                 <div className="header-left">
+                    <button className="icon-btn glass hidden-desktop mr-4" onClick={toggleSidebar}>
+                        <Menu size={24} />
+                    </button>
                     <div className="greeting">
                         <h1>Transaction <span className="text-gradient">History</span></h1>
                         <p className="text-secondary">Review and manage your financial records.</p>

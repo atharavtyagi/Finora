@@ -4,7 +4,7 @@
     position: fixed;
     left: 0;
     top: 0;
-    z-index: 200;
+    z-index: 1000;
     display: flex;
     flex-direction: column;
     padding: 2rem 1.5rem;
@@ -104,18 +104,23 @@
     font-family: 'Outfit';
 }
 
+
+
 .sidebar-overlay {
     display: none;
     position: fixed;
     inset: 0;
     background: rgba(0, 0, 0, 0.4);
     backdrop-filter: blur(4px);
-    z-index: 150;
+    z-index: 999;
 }
 
 @media (max-width: 1024px) {
     .sidebar {
         transform: translateX(-100%);
+        background: var(--bg-color);
+        /* Ensure solid background on mobile */
+        border-right: 1px solid var(--border-color);
     }
 
     .sidebar.open {

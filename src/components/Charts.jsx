@@ -79,9 +79,10 @@ const Charts = ({ transactions }) => {
         ],
     };
 
-    const options = {
+    const doughnutOptions = {
         responsive: true,
         maintainAspectRatio: false,
+        cutout: '75%',
         plugins: {
             legend: {
                 position: 'bottom',
@@ -93,20 +94,37 @@ const Charts = ({ transactions }) => {
                 }
             },
             tooltip: {
-                backgroundColor: darkMode ? 'rgba(15, 23, 42, 0.9)' : 'rgba(0,0,0,0.8)',
+                backgroundColor: darkMode ? 'rgba(15, 23, 42, 0.9)' : 'rgba(255, 255, 255, 0.9)',
+                titleColor: darkMode ? '#fff' : '#1e293b',
+                bodyColor: darkMode ? '#94a3b8' : '#475569',
                 padding: 12,
                 titleFont: { size: 14, weight: '700' },
                 bodyFont: { size: 13 },
                 displayColors: true,
                 cornerRadius: 10,
-                borderColor: darkMode ? 'rgba(255,255,255,0.1)' : 'transparent',
+                borderColor: darkMode ? 'rgba(255,255,255,0.1)' : 'rgba(0,0,0,0.1)',
                 borderWidth: 1
+            }
+        }
+    };
+
+    const barOptions = {
+        responsive: true,
+        maintainAspectRatio: false,
+        plugins: {
+            legend: { display: false },
+            tooltip: {
+                backgroundColor: darkMode ? 'rgba(15, 23, 42, 0.9)' : 'rgba(255, 255, 255, 0.9)',
+                titleColor: darkMode ? '#fff' : '#1e293b',
+                bodyColor: darkMode ? '#94a3b8' : '#475569',
+                padding: 12,
+                cornerRadius: 10
             }
         },
         scales: {
             y: {
                 beginAtZero: true,
-                grid: { display: true, color: gridColor },
+                grid: { color: gridColor, drawBorder: false },
                 ticks: { color: textColor, font: { size: 11 } }
             },
             x: {
@@ -117,26 +135,51 @@ const Charts = ({ transactions }) => {
     };
 
     return (
-        <div className="charts-grid flex gap-8 flex-wrap" style={{ width: '100%', padding: '1rem' }}>
-            <div className="chart-item" style={{ flex: '1.2', minWidth: '320px', height: '350px' }}>
-                <h4 className="text-secondary mb-6 font-semibold flex items-center gap-2">
-                    <span style={{ width: 8, height: 8, borderRadius: '50%', background: 'var(--primary-color)' }}></span>
-                    Expenses by Category
+        <div className="charts-grid flex gap-6 flex-wrap" style={{ width: '100%', padding: '0.5rem' }}>
+            <div className="chart-item glass" style={{
+                flex: '1 1 300px',
+                width: '100%',
+                minWidth: 0,
+                minHeight: '300px',
+                padding: '1rem',
+                borderRadius: '24px',
+                border: '1px solid var(--glass-border)',
+                display: 'flex',
+                flexDirection: 'column'
+            }}>
+                <h4 className="luxury-title mb-6 flex items-center gap-2" style={{ fontSize: '1.1rem' }}>
+                    <div style={{ width: 10, height: 10, borderRadius: '3px', background: 'linear-gradient(45deg, #6366f1, #a855f7)' }}></div>
+                    Spending by Category
                 </h4>
-                {Object.keys(categories).length > 0 ? (
-                    <Doughnut data={doughnutData} options={options} />
-                ) : (
-                    <div className="empty-chart flex items-center justify-center h-full border-2 border-dashed border-color rounded-xl">
-                        <p className="text-secondary">No expense records found</p>
-                    </div>
-                )}
+                <div style={{ flex: 1, position: 'relative', minHeight: 0 }}>
+                    {Object.keys(categories).length > 0 ? (
+                        <Doughnut data={doughnutData} options={doughnutOptions} />
+                    ) : (
+                        <div className="empty-chart flex items-center justify-center h-full border-2 border-dashed border-color rounded-2xl" style={{ opacity: 0.5 }}>
+                            <p className="text-secondary">No expense records found</p>
+                        </div>
+                    )}
+                </div>
             </div>
-            <div className="chart-item" style={{ flex: '1', minWidth: '320px', height: '350px' }}>
-                <h4 className="text-secondary mb-6 font-semibold flex items-center gap-2">
-                    <span style={{ width: 8, height: 8, borderRadius: '50%', background: 'var(--secondary-color)' }}></span>
-                    Income vs Expense
+
+            <div className="chart-item glass" style={{
+                flex: '1 1 300px',
+                width: '100%',
+                minWidth: 0,
+                minHeight: '300px',
+                padding: '1rem',
+                borderRadius: '24px',
+                border: '1px solid var(--glass-border)',
+                display: 'flex',
+                flexDirection: 'column'
+            }}>
+                <h4 className="luxury-title mb-6 flex items-center gap-2" style={{ fontSize: '1.1rem' }}>
+                    <div style={{ width: 10, height: 10, borderRadius: '3px', background: 'linear-gradient(45deg, #10b981, #3b82f6)' }}></div>
+                    Efficiency Overview
                 </h4>
-                <Bar data={barData} options={options} />
+                <div style={{ flex: 1, position: 'relative', minHeight: 0 }}>
+                    <Bar data={barData} options={barOptions} />
+                </div>
             </div>
         </div>
     );

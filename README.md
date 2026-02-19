@@ -34,7 +34,7 @@ Finora is a premium, high-performance personal finance tracker designed with a m
 
 1. **Clone the repository**
    ```bash
-   git clone https://github.com/yourusername/finora.git
+   git clone https://github.com/atharavtyagi/finora.git
    cd finora
    ```
 
@@ -66,10 +66,4 @@ Finora leverages a custom design system focused on:
 - **Vibrant Gradients**: Indigo and Violet accents for primary actions.
 - **Typography**: Utilizing the 'Outfit' and 'Inter' font families for a professional fintech feel.
 
-## 📄 License
 
-Distributed under the MIT License. See `LICENSE` for more information.
-
----
-
-Built with ❤️ by [Your Name]
