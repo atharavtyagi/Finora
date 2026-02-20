@@ -15,7 +15,7 @@ const Login = () => {
         try {
             setError('');
             await login(email, password);
-            navigate('/');
+            navigate('/dashboard');
         } catch (err) {
             setError('Failed to log in: ' + err.message);
         }
@@ -25,7 +25,7 @@ const Login = () => {
         try {
             setError('');
             await loginWithGoogle();
-            navigate('/');
+            navigate('/dashboard');
         } catch (err) {
             setError('Failed to log in with Google: ' + err.message);
         }

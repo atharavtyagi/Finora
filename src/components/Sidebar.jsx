@@ -48,7 +48,7 @@ const Sidebar = ({ isOpen, onClose }) => {
                 </div>
 
                 <nav className="sidebar-nav">
-                    <NavLink to="/" className="nav-link" end onClick={onClose}>
+                    <NavLink to="/dashboard" className="nav-link" end onClick={onClose}>
                         <LayoutDashboard size={20} />
                         <span>Dashboard</span>
                     </NavLink>
